@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922055344761",
+    "project_id": "server-driven-ui-65ef2",
+    "storage_bucket": "server-driven-ui-65ef2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922055344761:android:7bfc19bd95b1d40a548aa8",
+        "android_client_info": {
+          "package_name": "in.vishwakarthik.server_driven_ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9W00jcV3p6Q4aRRztgeUHOotLk6nIdeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
