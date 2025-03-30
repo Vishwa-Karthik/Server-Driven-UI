@@ -12,54 +12,19 @@ class SignUpInitial extends SignUpState {}
 class SignUpLoading extends SignUpState {}
 
 class SignUpSuccess extends SignUpState {
-  final String message;
+  final Map<String, dynamic>? remoteConfigData;
+  final String? message;
 
-  const SignUpSuccess({required this.message});
+  const SignUpSuccess({this.remoteConfigData, this.message});
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [remoteConfigData,message];
 }
 
 class SignUpFailure extends SignUpState {
   final String error;
 
   const SignUpFailure({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}
-
-class SignUpEmailAlreadyInUse extends SignUpState {
-  final String error;
-
-  const SignUpEmailAlreadyInUse({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}
-
-class SignUpWeakPassword extends SignUpState {
-  final String error;
-
-  const SignUpWeakPassword({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}
-
-class SignUpInvalidEmail extends SignUpState {
-  final String error;
-
-  const SignUpInvalidEmail({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}
-
-class SignUpUnknownError extends SignUpState {
-  final String error;
-
-  const SignUpUnknownError({required this.error});
 
   @override
   List<Object?> get props => [error];

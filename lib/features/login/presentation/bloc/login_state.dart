@@ -12,12 +12,13 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final String message;
+  final Map<String, dynamic>? remoteConfigData;
+  final String? message;
 
-  const LoginSuccess({required this.message});
+  const LoginSuccess({this.remoteConfigData, this.message});
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [remoteConfigData, message];
 }
 
 class LoginFailure extends LoginState {

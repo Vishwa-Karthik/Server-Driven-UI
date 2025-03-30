@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:server_driven_ui/core/remote_config/firebase_remote_config.dart';
 import 'package:server_driven_ui/features/login/data/repositories/firebase_login_impl.dart';
 import 'package:server_driven_ui/features/login/domain/repositories/abstract_firebase_login.dart';
 import 'package:server_driven_ui/features/login/presentation/bloc/login_bloc.dart';
@@ -23,5 +24,8 @@ class Injection {
       () => FirebaseSignUpImpl(),
     );
     sl.registerLazySingleton<AbstractFirebaseLogin>(() => FirebaseLoginImpl());
+
+    //
+    sl.registerLazySingleton(() => FirebaseRemoteConfigMethod());
   }
 }
