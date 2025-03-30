@@ -1,8 +1,12 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:server_driven_ui/core/injections/injection.dart';
+import 'package:server_driven_ui/core/remote_config/firebase_remote_config.dart';
+import 'package:server_driven_ui/core/utils/app_strings.dart';
+import 'package:server_driven_ui/core/utils/app_theme.dart';
 import 'package:server_driven_ui/features/home/presentation/pages/home_page.dart';
 import 'package:server_driven_ui/features/login/domain/repositories/abstract_firebase_login.dart';
 import 'package:server_driven_ui/features/login/presentation/bloc/login_bloc.dart';
@@ -15,19 +19,25 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Injection.init();
-  runApp(const MyApp());
+  final appTheme = await sl<FirebaseRemoteConfigMethod>().fetchScreenJson(
+    screenId: AppString.appTheme,
+  );
+  runApp(MyApp(appTheme: appTheme));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Map<String, dynamic>? appTheme;
+
+  const MyApp({super.key, this.appTheme});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Server Driven User Interface',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme(appTheme: appTheme).lightTheme,
+      darkTheme: AppTheme(appTheme: appTheme).darkTheme,
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
           BlocProvider(

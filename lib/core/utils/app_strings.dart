@@ -5,6 +5,7 @@ class AppString {
   static const String homeScreen = 'home_screen';
   static const String searchScreen = 'search_screen';
   static const String profileScreen = 'profile_screen';
+  static const String appTheme = 'app_theme';
 
   //
   static const String remoteConfigFetched = 'Remote Config Fetched';

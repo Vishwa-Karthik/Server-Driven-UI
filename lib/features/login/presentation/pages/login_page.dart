@@ -4,11 +4,10 @@ import 'package:server_driven_ui/core/injections/injection.dart';
 import 'package:server_driven_ui/core/utils/app_strings.dart';
 import 'package:server_driven_ui/core/utils/component_factory.dart';
 import 'package:server_driven_ui/features/login/presentation/bloc/login_bloc.dart';
-import 'package:server_driven_ui/features/sign_up/presentation/pages/sign_up_page.dart';
 import 'package:server_driven_ui/main.dart';
 
 class LoginPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
+  static route() => MaterialPageRoute(builder: (context) => const LoginPage());
 
   const LoginPage({super.key});
 
@@ -76,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                             (component) => ComponentFactory.buildComponent(
                               component,
                               context,
-                              formKey: formKey
+                              formKey: formKey,
                             ),
                           )
                           .toList(),

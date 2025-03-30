@@ -147,6 +147,7 @@ class ComponentFactory {
           Navigator.pushReplacement(context, LoginPage.route());
         }
         break;
+ 
 
       default:
         log('Unknown action: $action');
