@@ -10,14 +10,14 @@ class AppTheme {
     return ThemeData(
       scaffoldBackgroundColor:
           AppColors.parseColor(
-            appTheme?['themes']['light_mode']['colors']['backgroundColor']
+            appTheme?['themes']['light_mode']['colors']['background']
                 as String?,
           ) ??
           Colors.white,
       colorScheme: ColorScheme.fromSeed(
         seedColor:
             AppColors.parseColor(
-              appTheme?['themes']['light_mode']['colors']['backgroundColor']
+              appTheme?['themes']['light_mode']['colors']['background']
                   as String?,
             ) ??
             Colors.white,

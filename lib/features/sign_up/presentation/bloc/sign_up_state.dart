@@ -20,12 +20,3 @@ class SignUpSuccess extends SignUpState {
   @override
   List<Object?> get props => [remoteConfigData,message];
 }
-
-class SignUpFailure extends SignUpState {
-  final String error;
-
-  const SignUpFailure({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}

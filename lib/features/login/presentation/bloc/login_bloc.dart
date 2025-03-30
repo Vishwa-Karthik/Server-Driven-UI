@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:server_driven_ui/core/injections/injection.dart';
 import 'package:server_driven_ui/core/remote_config/firebase_remote_config.dart';
+import 'package:server_driven_ui/core/utils/app_strings.dart';
 import 'package:server_driven_ui/features/login/domain/repositories/abstract_firebase_login.dart';
 
 part 'login_event.dart';
@@ -29,7 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       log(result.toString(), name: 'Remote Config');
       emit(LoginSuccess(remoteConfigData: result));
     } catch (e) {
-      emit(LoginFailure(error: e.toString()));
+      log(e.toString(), name: 'Remote Config Error');
     }
   }
 
@@ -39,13 +40,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      await firebaseLogin.signInWithEmailAndPassword(
+      final result = await firebaseLogin.signInWithEmailAndPassword(
         email: event.email,
         password: event.password,
       );
-      emit(const LoginSuccess(message: 'Login Successful'));
+      if (result.user?.uid.isNotEmpty ?? false) {
+        emit(const LoginSuccess(message: AppString.remoteConfigFetched));
+      }
     } catch (e) {
-      emit(LoginFailure(error: e.toString()));
+      log(e.toString(), name: 'Remote Config Error');
     }
   }
 }

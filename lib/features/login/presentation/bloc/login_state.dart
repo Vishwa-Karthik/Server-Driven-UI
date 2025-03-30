@@ -20,12 +20,3 @@ class LoginSuccess extends LoginState {
   @override
   List<Object?> get props => [remoteConfigData, message];
 }
-
-class LoginFailure extends LoginState {
-  final String error;
-
-  const LoginFailure({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}

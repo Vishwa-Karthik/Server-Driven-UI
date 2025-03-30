@@ -64,6 +64,12 @@ class _DashboardPageState extends State<DashboardPage> {
                       .toList(),
             ),
             bottomNavigationBar: BottomNavigationBar(
+              backgroundColor:
+                  state.remoteConfigData['bottomNavBarBackground'] != null
+                      ? AppColors.parseColor(
+                        state.remoteConfigData['bottomNavBarBackground'],
+                      )
+                      : Colors.white,
               currentIndex: currentIndex,
               onTap: onNavTapped,
               selectedItemColor: AppColors.parseColor(
@@ -93,7 +99,10 @@ class _DashboardPageState extends State<DashboardPage> {
   AppBar buildAppBar(String screenKey) {
     var screenData = screens[screenKey] ?? {};
     return AppBar(
-      title: Text(screenData['appBar']['title'] ?? ''),
+      title: Text(
+        screenData['appBar']['title'] ?? '',
+        style: TextStyle(color: Colors.black),
+      ),
       backgroundColor: AppColors.parseColor(
         screenData['appBar']['backgroundColor'] ?? "#000000",
       ),
@@ -106,7 +115,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Center(
       child: Text(
         screenData['body']['value'] ?? 'No content available',
-        style: const TextStyle(fontSize: 18),
+        style: const TextStyle(fontSize: 18, color: Colors.white),
       ),
     );
   }

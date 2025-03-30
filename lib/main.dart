@@ -53,19 +53,18 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(create: (context) => DashboardBloc()),
         ],
-        child: DashboardPage(),
-        // child: StreamBuilder<User?>(
-        //   stream: FirebaseAuth.instance.authStateChanges(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return const Center(child: CircularProgressIndicator());
-        //     }
-        //     if (snapshot.hasData) {
-        //       return const DashboardPage();
-        //     }
-        //     return LoginPage();
-        //   },
-        // ),
+        child: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.idTokenChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasData) {
+              return const DashboardPage();
+            }
+            return LoginPage();
+          },
+        ),
       ),
     );
   }
