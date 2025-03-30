@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:server_driven_ui/core/injections/injection.dart';
 import 'package:server_driven_ui/core/utils/app_strings.dart';
 import 'package:server_driven_ui/core/utils/component_factory.dart';
+import 'package:server_driven_ui/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:server_driven_ui/features/login/presentation/bloc/login_bloc.dart';
-import 'package:server_driven_ui/main.dart';
 
 class LoginPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const LoginPage());
@@ -52,7 +52,9 @@ class _LoginPageState extends State<LoginPage> {
               if (state.message == AppString.remoteConfigFetched) {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const DashBoard()),
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardPage(),
+                  ),
                 );
               }
             } else if (state is LoginFailure) {

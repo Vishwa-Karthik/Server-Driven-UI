@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,8 @@ import 'package:server_driven_ui/core/injections/injection.dart';
 import 'package:server_driven_ui/core/remote_config/firebase_remote_config.dart';
 import 'package:server_driven_ui/core/utils/app_strings.dart';
 import 'package:server_driven_ui/core/utils/app_theme.dart';
-import 'package:server_driven_ui/features/home/presentation/pages/home_page.dart';
+import 'package:server_driven_ui/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:server_driven_ui/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:server_driven_ui/features/login/domain/repositories/abstract_firebase_login.dart';
 import 'package:server_driven_ui/features/login/presentation/bloc/login_bloc.dart';
 import 'package:server_driven_ui/features/login/presentation/pages/login_page.dart';
@@ -51,58 +51,21 @@ class MyApp extends StatelessWidget {
                 (context) =>
                     SignUpBloc(firebaseSignUp: sl<AbstractFirebaseSignUp>()),
           ),
+          BlocProvider(create: (context) => DashboardBloc()),
         ],
-        child: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasData) {
-              return const DashBoard();
-            }
-            return LoginPage();
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class DashBoard extends StatefulWidget {
-  const DashBoard({super.key});
-
-  @override
-  State<DashBoard> createState() => _DashBoardState();
-}
-
-class _DashBoardState extends State<DashBoard> {
-  final pages = [
-    HomePage(),
-    const Center(child: Text('Search')),
-    const Center(child: Text('Profile')),
-  ];
-  int currentIndex = 0;
-
-  void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Server Driven UI'), centerTitle: true),
-      body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: currentIndex,
-        onTap: onTap,
+        child: DashboardPage(),
+        // child: StreamBuilder<User?>(
+        //   stream: FirebaseAuth.instance.authStateChanges(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return const Center(child: CircularProgressIndicator());
+        //     }
+        //     if (snapshot.hasData) {
+        //       return const DashboardPage();
+        //     }
+        //     return LoginPage();
+        //   },
+        // ),
       ),
     );
   }

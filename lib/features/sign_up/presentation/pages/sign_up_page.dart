@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:server_driven_ui/core/injections/injection.dart';
 import 'package:server_driven_ui/core/utils/app_strings.dart';
 import 'package:server_driven_ui/core/utils/component_factory.dart';
+import 'package:server_driven_ui/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:server_driven_ui/features/sign_up/presentation/bloc/sign_up_bloc.dart';
-import 'package:server_driven_ui/main.dart';
 
 class SignUpPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
             if (state.message == AppString.remoteConfigFetched) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const DashBoard()),
+                MaterialPageRoute(builder: (context) => const DashboardPage()),
               );
             }
           } else if (state is SignUpFailure) {
