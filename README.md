@@ -1,16 +1,21 @@
-# server_driven_ui
+# Server Driven User Interface x Flutter Firebase
 
-A new Flutter project.
+This project demonstrates how to build a **Server-Driven User Interface (SDUI)** using **Flutter** and **Firebase Remote Config**. The app dynamically fetches UI configurations from Firebase Remote Config and renders the UI based on the server-provided JSON data.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Dynamic UI Rendering**: Fetch UI configurations from Firebase Remote Config and render them dynamically.
+- **Firebase Integration**: Uses `Firebase Remote Config`, `Firebase Authentication`, and `Firebase Core`.
+- **State Management**: Implements `flutter_bloc` for managing app state.
+- **Dependency Injection**: Uses `get_it` for dependency injection.
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Future Improvements
+ - JSON Response could have been converted custom modular dart classes, currently using Json Decoded response due to limited time.
+ - Fixed Response JSON Schema across all modules.
+ - FallBack mechanism if JSON couldn't be parsed.
+ - Cache responses to save unnecessary APIs.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+

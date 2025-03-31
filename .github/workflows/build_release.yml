@@ -1,0 +1,41 @@
+name: Build and Release Debug APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.x
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Extract version
+        id: extract_version
+        run: echo "APP_VERSION=$(grep -m1 'version:' pubspec.yaml | awk '{print $2}' | cut -d '+' -f1)" >> $GITHUB_ENV
+
+      - name: Upload APK to GitHub Releases
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ env.APP_VERSION }}-${{ github.run_id }}
+          name: "Debug APK - v${{ env.APP_VERSION }}"
+          draft: false
+          prerelease: true
+          artifacts: build/app/outputs/flutter-apk/app-debug.apk
+          token: ${{ secrets.GITHUB_TOKEN }}

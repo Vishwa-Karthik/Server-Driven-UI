@@ -69,7 +69,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ? AppColors.parseColor(
                         state.remoteConfigData['bottomNavBarBackground'],
                       )
-                      : Colors.white,
+                      : Colors.red,
               currentIndex: currentIndex,
               onTap: onNavTapped,
               selectedItemColor: AppColors.parseColor(
@@ -120,12 +120,10 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  /// Maps JSON icon names to Material Icons
   IconData _getIconData(String iconName) {
     return _iconMap[iconName] ?? Icons.help_outline;
   }
 
-  /// Material Icon Mapping
   static final Map<String, IconData> _iconMap = {
     "home": Icons.home,
     "work": Icons.work,
@@ -138,7 +136,7 @@ class _DashboardPageState extends State<DashboardPage> {
     "info": Icons.info,
     "message": Icons.message,
     "shopping_cart": Icons.shopping_cart,
-    "camera": Icons.camera,
+    "services": Icons.room_service,
     "call": Icons.call,
   };
 }
