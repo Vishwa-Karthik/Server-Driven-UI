@@ -30,7 +30,7 @@ class AppTheme {
                 appTheme?['themes']['light_mode']['colors']['primary']
                     as String?,
               ) ??
-              Colors.red,
+              Colors.white,
           foregroundColor:
               AppColors.parseColor(appTheme?['textColor'] as String?) ??
               Colors.white,
@@ -63,7 +63,7 @@ class AppTheme {
                 appTheme?['themes']['dark_mode']['colors']['primary']
                     as String?,
               ) ??
-              Colors.red,
+              Colors.white,
           foregroundColor:
               AppColors.parseColor(appTheme?['textColor'] as String?) ??
               Colors.white,

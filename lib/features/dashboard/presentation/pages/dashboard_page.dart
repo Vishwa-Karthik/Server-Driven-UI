@@ -69,7 +69,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ? AppColors.parseColor(
                         state.remoteConfigData['bottomNavBarBackground'],
                       )
-                      : Colors.red,
+                      : Colors.white,
               currentIndex: currentIndex,
               onTap: onNavTapped,
               selectedItemColor: AppColors.parseColor(
