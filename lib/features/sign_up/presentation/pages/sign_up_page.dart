@@ -57,6 +57,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     builder: (context) => const DashboardPage(),
                   ),
                 );
+              } else if (state.message != null && state.message != '') {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message ?? '')));
               }
             }
           },
@@ -94,6 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     SignUpButtonPressed(
                                       email: emailController.text.trim(),
                                       password: passwordController.text.trim(),
+                                      remoteConfigData: state.remoteConfigData,
                                     ),
                                   );
                                 } else if (id == 'navigate') {

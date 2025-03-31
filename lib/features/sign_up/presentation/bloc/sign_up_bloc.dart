@@ -45,11 +45,23 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         email: event.email,
         password: event.password,
       );
+
       if (result.user?.uid.isNotEmpty ?? false) {
-        emit(const SignUpSuccess(message: AppString.remoteConfigFetched));
+        emit(
+          SignUpSuccess(
+            message: AppString.remoteConfigFetched,
+            remoteConfigData: event.remoteConfigData,
+          ),
+        );
       }
     } catch (e) {
       log(e.toString(), name: 'Remote Config Error');
+      emit(
+        SignUpSuccess(
+          message: e.toString(),
+          remoteConfigData: event.remoteConfigData,
+        ),
+      );
     }
   }
 }

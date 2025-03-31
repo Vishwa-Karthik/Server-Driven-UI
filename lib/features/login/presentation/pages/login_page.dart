@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:server_driven_ui/core/injections/injection.dart';
@@ -36,17 +34,6 @@ class _LoginPageState extends State<LoginPage> {
     loginBloc.add(FetchRemoteConfig(screenId: AppString.loginScreen));
   }
 
-  void onLoginPressed() {
-    if (formKey.currentState!.validate()) {
-      loginBloc.add(
-        LoginButtonPressed(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        ),
-      );
-    }
-  }
-
   @override
   void dispose() {
     emailController.dispose();
@@ -70,6 +57,10 @@ class _LoginPageState extends State<LoginPage> {
                     builder: (context) => const DashboardPage(),
                   ),
                 );
+              } else if (state.message != null && state.message != '') {
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(state.message ?? '')));
               }
             }
           },
@@ -106,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                                 LoginButtonPressed(
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim(),
+                                  remoteConfigData: state.remoteConfigData,
                                 ),
                               );
                             } else if (id == 'navigate') {

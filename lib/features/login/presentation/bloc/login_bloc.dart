@@ -45,10 +45,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: event.password,
       );
       if (result.user?.uid.isNotEmpty ?? false) {
-        emit(const LoginSuccess(message: AppString.remoteConfigFetched));
+        emit(
+          LoginSuccess(
+            message: AppString.remoteConfigFetched,
+            remoteConfigData: event.remoteConfigData,
+          ),
+        );
       }
     } catch (e) {
       log(e.toString(), name: 'Remote Config Error');
+      emit(
+        LoginSuccess(
+          message: e.toString(),
+          remoteConfigData: event.remoteConfigData,
+        ),
+      );
     }
   }
 }

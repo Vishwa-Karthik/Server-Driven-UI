@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'sign_up_bloc.dart';
 
 abstract class SignUpState extends Equatable {
@@ -19,4 +20,14 @@ class SignUpSuccess extends SignUpState {
 
   @override
   List<Object?> get props => [remoteConfigData,message];
+
+  SignUpSuccess copyWith({
+    Map<String, dynamic>? remoteConfigData,
+    String? message,
+  }) {
+    return SignUpSuccess(
+      remoteConfigData: remoteConfigData ?? this.remoteConfigData,
+      message: message ?? this.message,
+    );
+  }
 }
